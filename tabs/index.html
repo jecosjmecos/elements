@@ -1,0 +1,113 @@
+<div class="col-lg-12 tabs">
+	<span>
+		<a href="javascript:void(0)" class="tabs-select d-sm-none"></a>
+		<div class="tabs-link">
+			<a data-for="#tab1" class="active" href="javascript:void(0)">Весна</a>
+			<a data-for="#tab2" href="javascript:void(0)">Лето</a>
+			<a data-for="#tab3" href="javascript:void(0)">Осень</a>
+			<a data-for="#tab4" href="javascript:void(0)">Зима</a>
+		</div>
+	</span>
+
+	<div class="tabs-items">
+		<div id="tab1" class="tabs-items_item active"><div></div></div>
+		<div id="tab2" class="tabs-items_item"><div></div></div>
+		<div id="tab3" class="tabs-items_item"><div></div></div>
+		<div id="tab4" class="tabs-items_item"><div></div></div>
+	</div>
+</div>
+
+<style>
+	.tabs-items_item{
+		display: none;
+	}
+	.tabs-items_item.active{
+		display: block;
+	}
+	.tabs .tabs-link {
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+	  -webkit-transition-duration: 0.3s;
+	          transition-duration: 0.3s;
+	}
+	@media screen and (max-width: 577px) {
+	  .tabs .tabs-link {
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	    border-bottom: none;
+	    height: 0;
+	    padding: 0;
+	    opacity: 0;
+	    visibility: hidden;
+	    overflow: hidden;
+	  }
+
+	  .tabs .tabs-link.visible {
+	    padding: 5px 0 5px;
+	    height: auto;
+	    opacity: 1;
+	    visibility: visible;
+	  }
+
+	  .tabs > span {
+	    background: rgba(255, 255, 255, 0.3);
+	    border-radius: 10px;
+	    display: block;
+	  }
+	}
+
+	.weather .tabs .tabs-select {
+	  height: 50px;
+	  display: -webkit-box;
+	  display: -ms-flexbox;
+	  display: flex;
+	  -webkit-box-align: center;
+	      -ms-flex-align: center;
+	          align-items: center;
+	  border-radius: 10px;
+	  background: rgba(255, 255, 255, 0.3);
+	  border: 1px solid #fff;
+	  padding: 0 36px 0 12px;
+	  position: relative;
+	  font-size: 21px;
+	  text-decoration: none;
+	}
+	.weather .tabs .tabs-select:before {
+	  content: '';
+	  height: 24px;
+	  width: 24px;
+	  background: url(../images/arrow-bottom.png) no-repeat center / cover;
+	  top: 50%;
+	  right: 12px;
+	  -webkit-transform: translateY(-50%);
+	          transform: translateY(-50%);
+	  position: absolute;
+	}
+</style>
+
+<script>
+    //tabs
+	$('.tabs-link a').click(function(){
+        $('.tabs-link a').removeClass('active');
+        $(this).addClass('active');
+
+        let tabId = $(this).attr('data-for');
+        $('.tabs-items_item').removeClass('active');
+        $(tabId).addClass('active');
+
+        $('.tabs-link').removeClass('visible');
+        initNameTab();
+    });
+
+	function initNameTab(){
+		let activeTab = $('.tabs-link a.active').text();
+	    $('.tabs-select').text(activeTab);
+	}
+	initNameTab();
+
+    $('.tabs-select').click(function(){
+    	$('.tabs-link').toggleClass('visible');
+    });
+</script>
